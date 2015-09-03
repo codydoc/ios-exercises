@@ -13,6 +13,7 @@
 - (BOOL) switchesFromBlackAndWhiteToColor {
     /* WORK HERE */
     return YES;
+    //fixed this
 }
 
 - (NSString *) mainCharacter {
