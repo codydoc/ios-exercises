@@ -19,8 +19,11 @@
     if(number == otherNumber){
     
         NSString *noGo = [NSString stringWithFormat:@"%li",(long)number];
+        //NSInteger is a typedef, could be long or integer, so need to identify that it is a long
+        //%i for int, %li for long int
         return noGo;
     }
+    //Don't need the if statement above
     
     if(number<otherNumber){
     
@@ -35,6 +38,9 @@
         
     }
     
+    //NSInteger lowNumber = MIN(number, otherNumber);
+    //NSInteger highNumber = MAX(number, otherNumber);
+    
     NSString *string1 = [NSString stringWithFormat:@"%li",(long)lowNumber];
     
     //NSLog(string1);
@@ -46,6 +52,9 @@
         NSString *stringNow = [NSString stringWithFormat:@"%li",(long)lowNumber];
         
         string1 = [string1 stringByAppendingString:stringNow];
+        //stringByAppendingFormat is better
+        //string1 = [string1 stringByAppendingFormat:@"%li",(long)lowNumber];
+        //Could also use NSMutableString, but most people don't use NSMutable string...
         //NSLog(string1);
     }
     
