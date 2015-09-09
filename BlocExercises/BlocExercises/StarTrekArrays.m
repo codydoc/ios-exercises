@@ -12,22 +12,56 @@
 
 - (NSArray *) arrayOfStarTrekCharactersFromString:(NSString *)characterString {
     /* WORK HERE */
-    return @[];
+    
+    NSArray *starTrek = [characterString componentsSeparatedByString:@";"];
+    
+    return starTrek;
 }
 
 - (NSString *) stringOfStarTrekCharactersFromArray:(NSArray *)characterArray {
     /* WORK HERE */
-    return @"";
+    
+    NSString *starTrekString = [characterArray componentsJoinedByString:@";"];
+    
+    return starTrekString;
 }
 
 - (NSArray *) alphabeticallySortedStarTrekCharactersFromArray:(NSArray *)characterArray {
     /* WORK HERE */
-    return @[];
+    
+    NSMutableArray *mutableCharacterArray = [@[]mutableCopy]; //Did I need to do this??
+    
+    for (int i=0; i<[characterArray count]; i++){
+    
+        [mutableCharacterArray addObject:characterArray[i]];
+    }
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:nil ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    
+    [mutableCharacterArray sortUsingDescriptors:@[sortDescriptor]];
+    
+    NSArray *finishedArray = [mutableCharacterArray copy];
+    
+    return finishedArray;
 }
 
 - (BOOL) characterArrayContainsWorf:(NSArray *)characterArray {
     /* WORK HERE */
-    return NO;
+    
+    NSPredicate *predicateSearch = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] 'Worf'"];
+    
+    NSArray *newArray = [characterArray filteredArrayUsingPredicate:predicateSearch];
+    
+    if([newArray count]>0){
+    
+        return TRUE;
+    }
+    
+    else {
+    
+        return false;
+
+    }
 }
 
 @end
