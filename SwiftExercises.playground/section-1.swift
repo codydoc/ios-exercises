@@ -8,6 +8,9 @@ Strings
 
 func favoriteCheeseStringWithCheese(cheese: String) -> String {
     // WORK HERE
+    
+    let cheese = "My favorite cheese is " + cheese
+    
     return cheese
 }
 
@@ -20,13 +23,20 @@ Arrays & Dictionaries
 
 */
 
-let numberArray = [1, 2, 3, 4]
+var numberArray = [1, 2, 3, 4]
+
 // Add 5 to this array
 // WORK HERE
 
-let numberDictionary = [1 : "one", 2 : "two", 3 : "three", 4 : "four"]
+numberArray.append(5)
+
+var numberDictionary = [1 : "one", 2 : "two", 3 : "three", 4 : "four"]
+
 // Add 5 : "five" to this dictionary
 // WORK HERE
+
+numberDictionary[5] = "five"
+println(numberDictionary)
 
 /*
 
@@ -37,8 +47,21 @@ Loops
 // Use a closed range loop to print 1 - 10, inclusively
 // WORK HERE
 
+for number in 1...10 {
+
+    println(number)
+}
+
+
 // Use a half-closed range loop to print 1 - 10, inclusively
 // WORK HERE
+
+for anothernumber in 1..<11{
+
+    println(anothernumber)
+    
+}
+
 
 let worf = [
     "name": "Worf",
@@ -58,7 +81,17 @@ let characters = [worf, picard]
 func favoriteDrinksArrayForCharacters(characters:[[String : String]]) -> [String] {
     // return an array of favorite drinks, like ["prune juice", "tea, Earl Grey, hot"]
     // WORK HERE
-    return []
+    
+    var arrayOfDrinks = [String]()
+    
+    for drink in characters {
+        //println(drink["favorite drink"])
+        arrayOfDrinks.append(drink["favorite drink"]!)
+        //Why did I need to unwrap the optional? Why was this an optional?
+    }
+    
+    return arrayOfDrinks
+    
 }
 
 let favoriteDrinks = favoriteDrinksArrayForCharacters(characters)
@@ -74,8 +107,17 @@ Optionals
 func emailFromUserDict(userDict : [String : String]) -> String {
     // Return the user's email address from userDict, or return "" if they don't have one
     
+    if let unwrappedEmail = userDict["email"]{
+    
+        return unwrappedEmail
+    }
+    
+    else{
+    
+        return ""
+    }
     // WORK HERE
-    return "user@example.com"
+    
 }
 
 
@@ -97,11 +139,26 @@ Functions
 
 // Make a function that inputs an array of strings and outputs the strings separated by a semicolon
 
-let strings = ["milk", "eggs", "bread", "challah"]
+let stringsGo = ["milk", "eggs", "bread", "challah"]
 
 // WORK HERE - make your function and pass `strings` in
 
+func foodTypes (strings : [String]) -> String{
+
+    var finalString = ""
+    
+    for food in strings{
+        
+        if(food == strings[0]){finalString += food}
+            
+        else{finalString += (";" + food)}
+    }
+
+    return finalString
+}
+
 let expectedOutput = "milk;eggs;bread;challah"
+foodTypes(stringsGo)
 
 /*
 
@@ -113,3 +170,8 @@ let cerealArray = ["Golden Grahams", "Cheerios", "Trix", "Cap'n Crunch OOPS! All
 
 // Use a closure to sort this array alphabetically
 // WORK HERE
+
+let sortedFoods = cerealArray.sorted{$0 < $1}
+//Why did I use $0 and $1
+
+println(sortedFoods)
